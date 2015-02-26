@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<style>
+.input {
+	width: 400px;
+	height: 300px;	
+	font-family: "Times New Roman", serif;
+	font-size:18px;
+}
+</style>
+</head>
+
+<body>
+<textarea class="input"></textarea>
+<script src="medium-text.js"></script>
+<script>
+
+var input = document.getElementsByClassName("input")[0];
+var w3c = true;
+
+input.addEventListener("input", onInput);
+
+if (!window.clipboardData) {
+	w3c = true;
+	input.addEventListener("paste", onPaste);
+} else {
+	w3c = false;
+	input.addEventListener("keydown", onPaste);
+}
+
+function onPaste(e) {
+	
+	e.preventDefault();
+	
+	var txt;
+	
+	if (w3c) {
+		// Chrome
+		txt = e.clipboardData.getData('Text');
+		
+	} else {
+		// IE
+		if (e.ctrlKey && e.keyCode == 86) {
+			txt = window.clipboardData.getData('Text');
+		}
+	}
+	
+	var caret = input.selectionStart;
+	var result = MediumText.parse(txt, 0, true);
+	
+	input.value = input.value.substring(0, caret) + result.text + input.value.substring(caret);
+
+	input.selectionStart = caret + result.caretOffset;
+	input.selectionEnd = caret + result.caretOffset;
+	
+}
+
+
+function onInput(e) {
+	
+	var caret = input.selectionStart;
+	var result = MediumText.parse(input.value, caret, false);
+	
+	input.value = result.text;
+	
+	input.selectionStart = caret + result.caretOffset;
+	input.selectionEnd = caret + result.caretOffset;
+}
+
+</script>
+</body>
+</html>
