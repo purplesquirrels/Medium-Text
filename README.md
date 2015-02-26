@@ -11,6 +11,7 @@ Usage
 =====
 - include the script
 - call MediumText.parse(text, caretIndex, checkAll) as text is typed or pasted into textarea
+- parse will return an object containing two properties - text: the resulting updated text, caretOffset: the number of places the caret has moved due to the char replacements (eg the three character --> are replaced with a single → character, so the caret will move back -2 places in the text
 
 Options
 =======
