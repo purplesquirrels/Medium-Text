@@ -1,7 +1,7 @@
 Medium Text
 ===========
 A rough JavaScript implementation of Medium's typography and typesetting rules as described at
-[Death to typewriters](https://medium.com/@mwichary/death-to-typewriters-technical-supplement-8f3c754626f2 "Death to typewriters")
+[Death to typewriters](https://medium.com/@mwichary/death-to-typewriters-automatic-replacement-and-clean-up-9169ca52a7c9 "Death to typewriters")
 
 Demo
 ---
